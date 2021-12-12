@@ -21,5 +21,16 @@
     <h2 style="color: blueviolet;">El mejor estudiante es: {{nombre}}</h2>
     <h3 style="color: blue;">Su nota es {{nota}}</h3>
     <h3 style="color: cornflowerblue;">Hoy es: {{fecha}}</h3>
+    <!--Recorrer una lista, muy similar que en python pero con el etiquetado de django-->
+    <h1>Los simpaticos</h1><br>
+    {% for estu in estudiantes%}
+        {% if estu == 'messi' %}
+       <p style="color: darkblue;">{{estu}}</p>
+       {% else %}
+       <p style="color: darkorange;">{{estu}}</p>
+       {% endif %}
+    {% endfor %}
+        
+
 </body>
 </html>

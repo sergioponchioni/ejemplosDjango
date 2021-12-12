@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from datetime import datetime, date
 from django.template import Template, Context
 
+#Paso 1 Cargadores
+from django.template import loader
+
 def saludo(request):
     return HttpResponse("Hola soy Sergio")
 
@@ -30,16 +33,18 @@ def probandoTemplate(request):
     mejorEstudiante = "Ilan Fritzler"
     nota = 8.9
     fecha = datetime.now()
-    dicc = {"nombre": mejorEstudiante, "nota":nota, "fecha":fecha}
+    estudiantesMasSimpaticos = ["pepe", "maria", "shakira", "messi"]
+    dicc = {"nombre": mejorEstudiante, "nota":nota, "fecha":fecha, "estudiantes":estudiantesMasSimpaticos}
     
-    miHTML = open("C:/Users/Qservices/Documents/Python/GitEjemplos/ejemplosDjango/Proyecto23850/Proyecto1/Proyecto1/Plantillas/template1.html")
+    #Paso 3  
+    plantilla = loader.get_template("template1.html")
+    
+    #miHTML = open("C:/Users/Qservices/Documents/Python/GitEjemplos/ejemplosDjango/Proyecto23850/Proyecto1/Proyecto1/Plantillas/template1.html")
+    #plantilla = Template(miHTML.read())
+    #miHTML.close()
+    #miContexto = Context(dicc)
 
-    plantilla = Template(miHTML.read())
-
-    miHTML.close()
-
-    miContexto = Context(dicc)
-
-    documento = plantilla.render(miContexto)
+    #Paso 4 y 5
+    documento = plantilla.render(dicc)
 
     return HttpResponse(documento)
