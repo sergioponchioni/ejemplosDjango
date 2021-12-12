@@ -25,13 +25,20 @@ def anio(request, edad):
     return HttpResponse(f"tu anio de nacimiento es  {anio}")
 
 def probandoTemplate(request):
-    miHTML = open("C:/Users/Qservices/Documents/Python/proyPruebaDjangoV2/Proyecto1/Proyecto1/Plantillas/template1.html")
+    
+    #Envio de variables, siempre se define un diccionario y se agrwega abajo en el contexto, luego con doble llave accedo desde el HTML
+    mejorEstudiante = "Ilan Fritzler"
+    nota = 8.9
+    fecha = datetime.now()
+    dicc = {"nombre": mejorEstudiante, "nota":nota, "fecha":fecha}
+    
+    miHTML = open("C:/Users/Qservices/Documents/Python/GitEjemplos/ejemplosDjango/Proyecto23850/Proyecto1/Proyecto1/Plantillas/template1.html")
 
     plantilla = Template(miHTML.read())
 
     miHTML.close()
 
-    miContexto = Context()
+    miContexto = Context(dicc)
 
     documento = plantilla.render(miContexto)
 
